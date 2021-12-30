@@ -27,7 +27,11 @@
 	},
 	"config": {
 		"preferred-install": "dist",
-		"sort-packages": true
+		"sort-packages": true,
+		"allow-plugins": {
+			"composer/installers": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	},
 	"prefer-stable": true,
 	"repositories": {

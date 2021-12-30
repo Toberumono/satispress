@@ -331,6 +331,12 @@ class ServiceProvider implements ServiceProviderInterface {
 				$container['transformer.composer_repository']
 			);
 		};
+		$container['route.composerlist'] = function( $container ) {
+			return new Route\Composer(
+				$container['repository.whitelist'],
+				$container['transformer.composerlist_repository']
+			);
+		};
 
 		$container['route.download'] = function( $container ) {
 			return new Route\Download(
@@ -344,6 +350,7 @@ class ServiceProvider implements ServiceProviderInterface {
 				$container,
 				[
 					'composer' => 'route.composer',
+					'composerlist' => 'route.composerlist',
 					'download' => 'route.download',
 				]
 			);
@@ -402,6 +409,14 @@ class ServiceProvider implements ServiceProviderInterface {
 
 		$container['transformer.composer_repository'] = function( $container ) {
 			return new ComposerRepositoryTransformer(
+				$container['transformer.composer_package'],
+				$container['release.manager'],
+				$container['version.parser'],
+				$container['logger']
+			);
+		};
+		$container['transformer.composerlist_repository'] = function( $container ) {
+			return new ComposerListRepositoryTransformer(
 				$container['transformer.composer_package'],
 				$container['release.manager'],
 				$container['version.parser'],

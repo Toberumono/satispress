@@ -57,6 +57,11 @@ class RewriteRules extends AbstractHookProvider {
 			'index.php?satispress_route=composer',
 			'top'
 		);
+		add_rewrite_rule(
+			'satispress/packages/list.json$',
+			'index.php?satispress_route=composerlist',
+			'top'
+		);
 
 		// Don't add a file extension. Some servers don't route file extensions
 		// through WordPress' front controller.
@@ -81,6 +86,10 @@ class RewriteRules extends AbstractHookProvider {
 		$wp_rewrite->add_external_rule(
 			'satispress/packages.json$',
 			'index.php?satispress_route=composer'
+		);
+		$wp_rewrite->add_external_rule(
+			'satispress/packages/list.json$',
+			'index.php?satispress_route=composerlist'
 		);
 	}
 
