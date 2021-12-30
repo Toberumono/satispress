@@ -32,6 +32,7 @@ use SatisPress\Screen;
 use SatisPress\Storage;
 use SatisPress\Transformer\ComposerPackageTransformer;
 use SatisPress\Transformer\ComposerRepositoryTransformer;
+use SatisPress\Transformer\ComposerListRepositoryTransformer;
 use SatisPress\Validator;
 
 /**
