@@ -101,11 +101,13 @@ class ComposerListRepositoryTransformer implements PackageRepositoryTransformer 
 			if ( empty( $item ) ) {
 				continue;
 			}
-
-			$items[ $package->get_name() ] = $item;
+			
+			$package_name = $package->get_name();
+			//TODO: Add support for filters?
+			$items[] = $package_name;
 		}
 
-		return [ 'packages' => $items ];
+		return [ 'packageNames' => $items ];
 	}
 
 	/**
