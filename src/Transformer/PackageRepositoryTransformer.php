@@ -12,6 +12,7 @@ declare ( strict_types = 1 );
 namespace SatisPress\Transformer;
 
 use SatisPress\Repository\PackageRepository;
+use SatisPress\HTTP\Request;
 
 /**
  * Package repository transformer interface.
@@ -27,5 +28,5 @@ interface PackageRepositoryTransformer {
 	 * @param PackageRepository $repository Package repository.
 	 * @return mixed
 	 */
-	public function transform( PackageRepository $repository );
+	public function transform( PackageRepository $repository, Request $request );
 }

@@ -17,6 +17,7 @@ use SatisPress\Exception\FileNotFound;
 use SatisPress\Exception\SatispressException;
 use SatisPress\Package;
 use SatisPress\ReleaseManager;
+use SatisPress\HTTP\Request;
 use SatisPress\Repository\PackageRepository;
 use SatisPress\VersionParser;
 use UnexpectedValueException;
@@ -85,10 +86,11 @@ class ComposerRepositoryTransformer implements PackageRepositoryTransformer {
 	 * @param PackageRepository $repository Package repository.
 	 * @return array
 	 */
-	public function transform( PackageRepository $repository ): array {
+	public function transform( PackageRepository $repository, Request $request ): array {
 		$items = [];
 
-		foreach ( $repository->all() as $slug => $package ) {
+		$slug = $request['slug'];
+		foreach ( ($slug ? $repository->first_where( [ 'slug' => $slug ] ) : $repository->all() as $slug => $package ) {
 			/* @var Package $package Package. */
 			if ( ! $package->has_releases() ) {
 				continue;

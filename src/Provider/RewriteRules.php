@@ -66,8 +66,19 @@ class RewriteRules extends AbstractHookProvider {
 		// Don't add a file extension. Some servers don't route file extensions
 		// through WordPress' front controller.
 		add_rewrite_rule(
+			'satispress/p/satispress/([^/]+)(/([^/]+))?$',
+			'index.php?satispress_route=download&satispress_params[slug]=$matches[1]&satispress_params[version]=$matches[3]',
+			'top'
+		);
+		add_rewrite_rule(
 			'satispress/([^/]+)(/([^/]+))?$',
 			'index.php?satispress_route=download&satispress_params[slug]=$matches[1]&satispress_params[version]=$matches[3]',
+			'top'
+		);
+
+		add_rewrite_rule(
+			'satispress/p/satispress/([^/]+)(/([^/]+))?.json$',
+			'index.php?satispress_route=composer&satispress_params[slug]=$matches[1]&satispress_params[version]=$matches[3]',
 			'top'
 		);
 	}

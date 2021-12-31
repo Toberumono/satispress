@@ -18,6 +18,7 @@ use SatisPress\Exception\SatispressException;
 use SatisPress\Package;
 use SatisPress\ReleaseManager;
 use SatisPress\Repository\PackageRepository;
+use SatisPress\HTTP\Request;
 use SatisPress\VersionParser;
 use UnexpectedValueException;
 
@@ -85,7 +86,7 @@ class ComposerListRepositoryTransformer implements PackageRepositoryTransformer 
 	 * @param PackageRepository $repository Package repository.
 	 * @return array
 	 */
-	public function transform( PackageRepository $repository ): array {
+	public function transform( PackageRepository $repository, Request $request ): array {
 		$items = [];
 
 		foreach ( $repository->all() as $slug => $package ) {
