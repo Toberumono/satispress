@@ -68,7 +68,7 @@ class Composer implements Route {
 		}
 
 		return new Response(
-			new JsonBody( $this->transformer->transform( $this->repository ) ),
+			new JsonBody( $this->transformer->transform( $this->repository, $request ) ),
 			HTTP::OK,
 			[ 'Content-Type' => 'application/json; charset=' . get_option( 'blog_charset' ) ]
 		);
